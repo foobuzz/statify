@@ -1,0 +1,4 @@
+sample_*.json
+__pycache__/
+reset_database.sh
+TODO
