@@ -8,10 +8,7 @@ def test_no_config(fs, mocker):
 
     statify._main(argparse.Namespace())
 
-    assert print_mock.mock_calls == [
-        mocker.call(
-            'Invalid configuration. Please add your client_id and client_secret '
-            'in /home/valentin/.config/statify.yaml:\n\nspotify_app:\n  '
-            'client_id: your client ID\n  client_secret: your client secret'
-        )
-    ]
+    _, args, _ = print_mock.mock_calls[0]
+    assert args[0].startswith(
+        'Invalid configuration. Please add your client_id and client_secret'
+    ) is True
