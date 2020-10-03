@@ -47,6 +47,8 @@ You can also update everything (playlists and listenings):
 
 	statify pull
 
+The database is located at `~/.data/statify/statify.sqlite`. See [examples of queries](https://github.com/foobuzz/statify/blob/master/queries.sql) you can then run on this database.
+
 
 ## FAQ
 
