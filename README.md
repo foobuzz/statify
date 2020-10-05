@@ -54,14 +54,14 @@ The database is located at `~/.data/statify/statify.sqlite`. See [examples of qu
 
 **Why do I need to create an App on Spotify and authorize myself on it?**
 
-Spotify has no "private app" or "script app" mechanism that would allow individual users to use the Spotify API on their own account. So the only way to consumme the Spotify API as a given user is to create an App with OAuth 2.0 authorization and authorize oneself on it.
+Spotify has no "private app" or "script app" mechanism that would allow individual users to use the Spotify API on their own account. So the only way to consume the Spotify API as a given user is to create an App with OAuth 2.0 authorization and authorize oneself on it.
 
 Statify could have been a website running a single App and fetching data about multiple users having authorized it, but as a developer I don't want to maintain such service, and as a user you shouldn't have your data be handed to a third-party in order to get it.
 
 
 **What about data exports?**
 
-Spotify allows users to export their data [from there](https://www.spotify.com/ca-en/account/privacy/). Such data exports don't contain the entire history but only one year of history, which is still better than Statify which can only grab data from the moment it is intalled as a cron. However, Statify has the following advantages over such data export:
+Spotify allows users to export their data [from there](https://www.spotify.com/ca-en/account/privacy/). Such data exports don't contain the entire history but only one year of history, which is still better than Statify which can only grab data from the moment it is installed as a cron. However, Statify has the following advantages over such data export:
 
  - The data export needs to be ordered manually from the Spotify web interface and will take a few days to generate (at which point Spotify sends you an email). In comparison, a single `statify pull` automatically fetches your data.
  - Once you've ordered one data export, it is cached and you cannot order a second one for some time (I don't how much time, since I'm still having my own one cached, and that has been 12 days) meaning you'll need to wait in order to have your data up-to-date. In comparison, assuming you run `statify pull` in a cron, your Statify database is always up-to-date.
