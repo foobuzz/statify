@@ -6,13 +6,21 @@ Fetch your Spotify data (playlists and listenings) and add it to a Sqlite databa
 
 ## Installation
 
+Important: Statify requires Sqlite 3.24.0+: 
+
+```
+python -c 'import sqlite3; print(sqlite3.sqlite_version)'
+# => 3.31.0
+```
+
+
  1. Install the Python package:
 
 ```
 pip install statify
 ```
 
- 2. Create your own [Spotify App](https://developer.spotify.com/dashboard/applications) and configure its credential in the statify config file (`~/.config/statify.yaml`):
+ 2. Create your own [Spotify App](https://developer.spotify.com/dashboard/applications). When you create the App in Spotify, you need to specify `http://localhost:9090` as the redirect URL. You can then add the App's credentials in the statify config file (`~/.config/statify.yaml`).:
 
 ```
 spotify_app:
