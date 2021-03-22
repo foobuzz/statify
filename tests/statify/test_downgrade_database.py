@@ -1,5 +1,6 @@
 import argparse
 
+from statify import config
 from statify import database_client
 from statify import statify
 
@@ -13,8 +14,10 @@ def test_downgrade_database(fs, statify_directory, statify_config, mocker):
 
     assert print_mock.mock_calls == [
         mocker.call(
-            'Statify version 1.0 is running but the database is setup for '
+            'Statify version {} is running but the database is setup for '
             'version 42424242.42.42. Downgrading the database is not supported '
-            'so you should install statify 42424242.42.42 or higher.'
+            'so you should install statify 42424242.42.42 or higher.'.format(
+                config.VERSION
+            )
         )
     ]

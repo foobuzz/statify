@@ -342,6 +342,7 @@ SQL_INIT_STATEMENTS = V1_0_STATEMENTS
 # {version_number: index of the last SQL statement for this version}
 SQL_INIT_VERSIONS = {
     '1.0': len(V1_0_STATEMENTS),
+    '1.1.0': len(V1_0_STATEMENTS),
 }
 
 
