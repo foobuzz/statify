@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-VERSION = '1.1.0'
+VERSION = '1.2.0'
 
 STATIFY_PATH = Path(os.environ.get('STATIFY_DATA',
                     Path.home() / '.data' / 'statify'))
