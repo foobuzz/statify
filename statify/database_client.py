@@ -2,6 +2,7 @@ import collections
 import os
 import sqlite3
 import threading
+from distutils.version import LooseVersion
 
 import pkg_resources
 from pypika import Query, PostgreSQLQuery, Parameter, Table
@@ -342,7 +343,6 @@ SQL_INIT_STATEMENTS = V1_0_STATEMENTS
 # {version_number: index of the last SQL statement for this version}
 SQL_INIT_VERSIONS = {
     '1.0': len(V1_0_STATEMENTS),
-    '1.1.0': len(V1_0_STATEMENTS),
 }
 
 
@@ -350,6 +350,15 @@ def _get_database_updates(from_version):
     if from_version is None:
         from_index = 0
     else:
-        from_index = SQL_INIT_VERSIONS[from_version] + 1
-    to_index = SQL_INIT_VERSIONS[config.VERSION] + 1
-    return SQL_INIT_STATEMENTS[from_index:to_index]
+        # Finding the highest version lesser or equal to the found version
+        registered_versions = sorted(
+            SQL_INIT_VERSIONS.keys(),
+            key=lambda v: LooseVersion(v),
+            reverse=True,
+        )
+        for version in registered_versions:
+            if LooseVersion(version) <= LooseVersion(config.VERSION):
+                from_version = version
+                break
+        from_index = SQL_INIT_VERSIONS[from_version]
+    return SQL_INIT_STATEMENTS[from_index:]
