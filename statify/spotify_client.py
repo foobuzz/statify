@@ -19,6 +19,7 @@ class Spotify:
 
     def __init__(
         self, client_id, client_secret, track_transformer=None, throttling=0.5,
+        **client_args,
     ):
         # Note: Spotify rate limit is not documented. The proper way to deal
         # with it is to look at the `Retry-After` HTTP header, but here we use
@@ -43,7 +44,7 @@ class Spotify:
             self.sp = None
         else:
             self.token = tokens_resource['access_token']
-            self.sp = spotipy.client.Spotify(self.token)
+            self.sp = spotipy.client.Spotify(self.token, **client_args)
 
         # Throttling
         self._last_call_time = 0

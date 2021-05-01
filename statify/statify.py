@@ -72,6 +72,7 @@ def _main(args):
     }
     if conf.get('throttling') is not None:
         spotify_client_args['throttling'] = conf.get('throttling')
+    spotify_client_args.update(conf.get('client_args', {}))
     spotify = spotify_client.Spotify(**spotify_client_args)
 
     # Database client
