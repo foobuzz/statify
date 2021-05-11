@@ -125,6 +125,8 @@ class Spotify:
             playlist_id,
             page_size=100,  # Max allowed
         ):
+            if p_track['track'] is None:
+                continue
             if self.track_transformer is not None:
                 p_track['track'] = self.track_transformer(p_track['track'])
             yield p_track
