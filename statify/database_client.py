@@ -106,6 +106,7 @@ class StatifyDatabase:
         current_thread_id = threading.get_ident()
         if self.connections.get(current_thread_id) is None:
             connection = sqlite3.connect(self.path)
+            connection.row_factory = sqlite3.Row
             self.connections[current_thread_id] = connection
         else:
             connection = self.connections[current_thread_id]
@@ -174,6 +175,25 @@ class StatifyDatabase:
              .columns(*(t[0] for t in values))
              .insert(*_pypika_params(len(values))))
         return self._execute(q, tuple(t[1] for t in values))
+
+    def select_song_by_spotify_id(self, spotify_id):
+        results = self.select_from(
+            'Song', ['*'],
+            spotify_id=spotify_id,
+        )
+        if results:
+            return dict(results[0])
+        else:
+            return None
+
+    def select_listenings_by_spotify_id(self, spotify_id):
+        return [
+            dict(row) for row in
+            self.select_from(
+                'Listening', '*',
+                song_id=spotify_id,
+            )
+        ]
 
     def query(self, q, *params):
         return self._execute(q, params)

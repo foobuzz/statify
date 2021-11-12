@@ -1,0 +1,31 @@
+<html>
+
+	<head>
+		<title>{{ song.artists_names }} - {{ song.name }}</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+		
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	    <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0"></script>
+	    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@0.1.1"></script>
+
+	    <script>
+	    	JS_INIT_DATA = {
+	    		spotifyId: '{{ song.spotify_id }}',
+	    	}
+	    </script>
+		<script src="{{ url_for('static', filename='song.js') }}"></script>
+	</head>
+
+	<body>
+		<h1>{{ song.artists_names }} - {{ song.name }}</h1>
+		<div class="songFirstRow">
+			<div class="cover">
+				<img src="{{ song.cover_url }}" alt="Cover of {{ song.album_name }}">
+			</div>
+			<div class="songChartContainer" style="position: relative; height: 400px; width: 800px">
+				<canvas id="songChart"></canvas>
+			</div>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,17 @@
+h1 {
+	font-family: Arial, sans-serif;
+	font-size: 3em;
+}
+
+.cover {
+	margin-right: 20px;
+}
+
+.cover img {
+	height: 350px;
+}
+
+.songFirstRow {
+	display: flex;
+	align-items: center;
+}
