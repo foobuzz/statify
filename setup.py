@@ -4,7 +4,10 @@ from setuptools import setup
 setup(
     name='statify',
     version='1.2.0',
-    packages=['statify'],
+    packages=[
+        'statify',
+        'statify.webserver',
+    ],
     entry_points={
         'console_scripts': [
             'statify = statify.statify:main'
@@ -19,6 +22,7 @@ setup(
         'pyyaml==5.3.1',
         'setuptools==49.1.0',
         'spotipy==2.16.0',
+        'flask==2.1.2',
     ],
     extras_require={
         'tests': {
