@@ -3,6 +3,7 @@
 	<head>
 		<title>{{ song.artists_names }} - {{ song.name }}</title>
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/css/autoComplete.min.css">
 		
 		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	    <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0"></script>
@@ -13,10 +14,15 @@
 	    		spotifyId: '{{ song.spotify_id }}',
 	    	}
 	    </script>
+	    <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
 		<script src="{{ url_for('static', filename='song.js') }}"></script>
 	</head>
 
 	<body>
+		<header class="search">
+			<input id="autocomplete">
+		</header>
+
 		<h1>{{ song.artists_names }} - {{ song.name }}</h1>
 		<div class="songFirstRow">
 			<div class="cover">

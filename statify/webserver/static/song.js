@@ -3,7 +3,6 @@ function initSongChart(spotifyId) {
         response.text().then(function(text) {
             listenings = JSON.parse(text);
             timeData = convertListeningsToTimeSeries(listenings);
-            console.log(timeData);
             const config = {
                 type: 'line',
                 data: {
@@ -47,4 +46,33 @@ function convertListeningsToTimeSeries(listenings) {
 
 document.addEventListener('DOMContentLoaded', function() {
     initSongChart(JS_INIT_DATA.spotifyId);
+
+    const autoCompleteJS = new autoComplete({
+        data: {
+            src: async (query) => {
+                const source = await fetch(`http://localhost:5000/api/autocomplete?query=${query}`);
+                const data = await source.json();
+                return data;
+            },
+            keys: ['name', 'artist'],
+        },
+        resultItem: {
+            element: (item, data) => {
+                item.setAttribute('data-spotify-id', data.value.spotify_id);
+                item.textContent = [
+                    data.value.artists_names, data.value.name,
+                ].join(' - ');
+            }
+        },
+        searchEngine: (query, value) => { return value; },
+        events: {
+            list: {
+                click: (event) => {
+                    console.log(event.target);
+                    let spotifyId = event.target.getAttribute('data-spotify-id');
+                    window.location = `http://localhost:5000/song/${spotifyId}`;
+                }
+            }
+        },
+    });
 });

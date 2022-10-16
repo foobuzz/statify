@@ -5,6 +5,7 @@ import threading
 from distutils.version import LooseVersion
 
 import pkg_resources
+import pypika
 from pypika import Query, PostgreSQLQuery, Parameter, Table
 
 from . import config
@@ -100,6 +101,7 @@ class StatifyDatabase:
             )
 
     def _execute(self, query, params=None):
+        print(">>>>>>", str(query), params)
         return self._sql(str(query), params)
 
     def _sql(self, query, params=None):
@@ -193,6 +195,27 @@ class StatifyDatabase:
                 'Listening', '*',
                 song_id=spotify_id,
             )
+        ]
+
+    def search_songs(self, words):
+        songs = Table('Song')
+        q = Query.from_(songs).select('*')
+
+        or_close = pypika.terms.Criterion.any()
+        for w in words:
+            or_close |= (
+                songs.name.like(Parameter('?')) |
+                songs.artists_names.like(Parameter('?'))
+            )
+
+        q = q.where(or_close)
+
+        return [
+            dict(row) for row in
+            self._execute(
+                q,
+                tuple([f'%{w}%' for zipped in zip(words, words) for w in zipped])
+            ).fetchall()
         ]
 
     def query(self, q, *params):

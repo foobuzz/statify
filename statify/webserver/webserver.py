@@ -1,8 +1,10 @@
+import functools
 from datetime import datetime
 
 import flask
 
 from statify import database_client
+from statify.webserver import search
 
 
 app = flask.Flask(__name__)
@@ -24,6 +26,22 @@ def song_endpoint(spotify_id):
     listenings = db_client.select_listenings_by_spotify_id(spotify_id)
     return flask.jsonify([listening_resource(l) for l in listenings])
 
+
+@app.route('/api/autocomplete')
+def autocomplete_endpoint():
+    query = flask.request.args['query']
+    words = [w.lower() for w in query.split()]
+    
+    results = db_client.search_songs(words)
+
+    results.sort(
+        key=lambda s: search.match_song_to_query(words=words, song=s),
+        reverse=True,
+    )
+
+    print(">", [r['name'] for r in results])
+
+    return flask.jsonify(results)
 
 
 def listening_resource(listening):
