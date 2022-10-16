@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const autoCompleteJS = new autoComplete({
         data: {
             src: async (query) => {
-                const source = await fetch(`http://localhost:5000/api/autocomplete?query=${query}`);
+                const source = await fetch(`${window.location.origin}/api/autocomplete?query=${query}`);
                 const data = await source.json();
                 return data;
             },
@@ -70,9 +70,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 click: (event) => {
                     console.log(event.target);
                     let spotifyId = event.target.getAttribute('data-spotify-id');
-                    window.location = `http://localhost:5000/song/${spotifyId}`;
+                    window.location = `${window.location.origin}/song/${spotifyId}`;
                 }
             }
         },
+        debounce: 500,
     });
 });

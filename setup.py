@@ -8,9 +8,13 @@ setup(
         'statify',
         'statify.webserver',
     ],
+    package_data={
+        'statify.webserver': ['static/*', 'templates/*'],
+    },
     entry_points={
         'console_scripts': [
-            'statify = statify.statify:main'
+            'statify=statify.statify:main',
+            'statify_webserver=statify.webserver.webserver:main'
         ]
     },
     description="Pull your playlist and listening data from the Spotify API",
