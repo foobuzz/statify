@@ -15,3 +15,24 @@ h1 {
 	display: flex;
 	align-items: center;
 }
+
+
+/* Autocomplete */
+
+.ac-row {
+	display: flex;
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+}
+
+.ac-cover-container {
+	margin-right: 5px;
+}
+
+.ac-cover {
+	width: 40px;
+}
+
+.ac-name {
+	font-weight: bold;
+}
