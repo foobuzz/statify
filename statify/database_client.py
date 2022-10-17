@@ -201,20 +201,27 @@ class StatifyDatabase:
         songs = Table('Song')
         q = Query.from_(songs).select('*')
 
-        or_close = pypika.terms.Criterion.any()
+        and_close = pypika.terms.Criterion.any()
         for w in words:
-            or_close |= (
+            and_close &= (
                 songs.name.like(Parameter('?')) |
+                songs.name.like(Parameter('?')) |
+                songs.artists_names.like(Parameter('?')) |
                 songs.artists_names.like(Parameter('?'))
             )
 
-        q = q.where(or_close)
+        q = q.where(and_close).limit(5)
 
         return [
             dict(row) for row in
             self._execute(
                 q,
-                tuple([f'%{w}%' for zipped in zip(words, words) for w in zipped])
+                # just move along, nothing to see here
+                tuple([
+                    f"%{' ' if i%2 == 0 else ''}{w}%"
+                    for zipped in zip(*([words]*4))
+                    for i, w in enumerate(zipped)
+                ])
             ).fetchall()
         ]
 
