@@ -1,0 +1,11 @@
+.search {
+	text-align: center;
+	margin-top: 15%;
+}
+
+.search .indication {
+	font-family: arial, sans serif;
+	font-size: 1.5em;
+	color: #656565;
+	margin-bottom: 25px;
+}

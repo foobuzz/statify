@@ -1,0 +1,21 @@
+<html>
+
+	<head>
+		<title>Statify</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='common.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='front.css') }}">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/css/autoComplete.min.css">
+	    <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
+		<script src="{{ url_for('static', filename='autocomplete.js') }}"></script>
+	</head>
+
+	<body>
+		<div class="search">
+			<div class="indication">search for a song...</div>
+			<input id="autocomplete">
+		</div>
+
+		{% include 'autocomplete_template.html' %}
+	</body>
+
+</html>

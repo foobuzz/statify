@@ -13,6 +13,11 @@ db_client = database_client.StatifyDatabase()
 
 # Front
 
+@app.route('/')
+def front_page():
+    return flask.render_template('index.html')
+
+
 @app.route('/song/<spotify_id>')
 def song_page(spotify_id):
     song_data = db_client.select_song_by_spotify_id(spotify_id)
