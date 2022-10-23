@@ -13,13 +13,16 @@ document.addEventListener('DOMContentLoaded', function() {
     new autoComplete({
         data: {
             src: async (query) => {
-                const source = await fetch(
+                let source = await fetch(
                     `${host}/api/autocomplete?query=${query}`
                 );
-                const data = await source.json();
+                let data = await source.json();
                 return data;
             },
             keys: ['name', 'artist'],
+        },
+        resultsList: {
+            class: 'resultList',
         },
         resultItem: {
             element: (item, data) => {

@@ -25,13 +25,15 @@
 			<input id="autocomplete">
 		</header>
 
-		<h1>{{ song.artists_names }} - {{ song.name }}</h1>
-		<div class="songFirstRow">
-			<div class="cover">
-				<img src="{{ song.cover_url }}" alt="Cover of {{ song.album_name }}">
-			</div>
-			<div class="songChartContainer" style="position: relative; height: 400px; width: 800px">
-				<canvas id="songChart"></canvas>
+		<div class="main-content">
+			<h1>{{ song.artists_names }} - {{ song.name }}</h1>
+			<div class="songFirstRow">
+				<div class="cover">
+					<img src="{{ song.cover_url }}" alt="Cover of {{ song.album_name }}">
+				</div>
+				<div class="songChartContainer" style="position: relative; height: 400px; width: 800px">
+					<canvas id="songChart"></canvas>
+				</div>
 			</div>
 		</div>
 
