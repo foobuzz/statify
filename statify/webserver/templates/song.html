@@ -2,6 +2,7 @@
 
 	<head>
 		<title>{{ song.artists_names }} - {{ song.name }}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='common.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='song.css') }}">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/css/autoComplete.min.css">
@@ -26,12 +27,14 @@
 		</header>
 
 		<div class="main-content">
-			<h1>{{ song.artists_names }} - {{ song.name }}</h1>
-			<div class="songFirstRow">
-				<div class="cover">
-					<img src="{{ song.cover_url }}" alt="Cover of {{ song.album_name }}">
+			<div class="song-stats">
+				<div class="song-title-cover">
+					<h1>{{ song.artists_names }} - {{ song.name }}</h1>
+					<div class="cover">
+						<img src="{{ song.cover_url }}" alt="Cover of {{ song.album_name }}">
+					</div>
 				</div>
-				<div class="songChartContainer" style="position: relative; height: 400px; width: 800px">
+				<div class="listenings-graph">
 					<canvas id="songChart"></canvas>
 				</div>
 			</div>

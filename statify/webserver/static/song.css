@@ -6,28 +6,82 @@ header {
 	padding: 15px;
 	text-align: center;
 	box-shadow: 0px 2px 5px 0px #D0D0D0;
+	margin-bottom: 15px;
 }
 
 h1 {
 	font-family: Arial, sans-serif;
 	color: #2D2D2D;
 	font-size: 3em;
+	width: 300%;
+	margin-top: 15px;
+	margin-bottom: 60px;
 }
 
 .main-content {
-	width: 70%;
+	width: 80%;
+	max-width: 1200px;
 	margin: auto;
 }
 
-.cover {
+.song-stats {
+	display: flex;
+	align-items: end;
+}
+
+.song-title-cover {
+	width: 350px;
 	margin-right: 20px;
 }
 
-.cover img {
-	height: 350px;
+.cover {
+	margin-bottom: 50px;
 }
 
-.songFirstRow {
-	display: flex;
-	align-items: center;
+.cover img {
+	height: 320px;
+}
+
+.listenings-graph {
+	position: relative;
+	flex-grow: 1;
+	height: 400px;
+}
+
+
+@media (max-width: 900px) {
+
+	h1 {
+		font-size: 1.2rem;
+		margin: 0;
+	}
+
+	.main-content {
+		width: 90%;
+	}
+
+	.song-title-cover {
+		display: flex;
+		flex-direction: row-reverse;
+		align-items: center;
+		margin: 10px 0;
+		width: unset;
+		margin-right: 0;
+	}
+
+	.song-stats {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+
+	.cover {
+		margin-right: 10px;
+		margin-bottom: 0;
+	}
+
+	.cover img {
+		height: 60px;
+	}
+
 }

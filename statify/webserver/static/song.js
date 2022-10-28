@@ -21,6 +21,7 @@ function initSongChart(spotifyId) {
                         }
                     },
                     maintainAspectRatio: false,
+                    responsive: true,
                 }
             };
             const myChart = new Chart(
