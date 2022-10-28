@@ -9,3 +9,17 @@
 	color: #656565;
 	margin-bottom: 25px;
 }
+
+
+@media (max-width: 900px) {
+
+	.search {
+		margin-top: 35%;
+	}
+
+	.search .indication {
+		font-size: 1em;
+		margin-bottom: 15px;
+	}
+
+}
