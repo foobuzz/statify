@@ -25,7 +25,7 @@ function initSongChart(spotifyId) {
                 }
             };
             const myChart = new Chart(
-                document.getElementById('songChart'),
+                document.getElementById('song-chart'),
                 config,
             );
         });
