@@ -153,13 +153,15 @@ class StatifyDatabase:
             .on_conflict(conflict_column)
         )
 
-    def select_from(self, table_name, columns, **selectors):
+    def select_from(self, table_name, columns, order_by=None, **selectors):
         table = Table(table_name)
         q = Query.from_(table).select(*columns)
         params = []
         for col, value in selectors.items():
             q = q.where(getattr(table, col) == Parameter('?'))
             params.append(value)
+        if order_by is not None:
+            q = q.orderby(order_by)
         return self._execute(q, tuple(params)).fetchall()
 
     def delete_from(self, table_name, **selectors):
@@ -194,6 +196,7 @@ class StatifyDatabase:
             self.select_from(
                 'Listening', '*',
                 song_id=spotify_id,
+                order_by='played_at',
             )
         ]
 
