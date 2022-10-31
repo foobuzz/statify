@@ -19,6 +19,12 @@ function initSongChart(spotifyId) {
                         x: {
                             type: 'time'
                         }
+                        },
+                        y: {
+                            ticks: {
+                                precision: 0,
+                            },
+                        },
                     },
                     maintainAspectRatio: false,
                     responsive: true,
