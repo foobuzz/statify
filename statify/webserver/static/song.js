@@ -17,8 +17,10 @@ function initSongChart(spotifyId) {
                 options: {
                     scales: {
                         x: {
-                            type: 'time'
-                        }
+                            type: 'time',
+                            ticks: {
+                                callback: getXAxisLabel,
+                            },
                         },
                         y: {
                             ticks: {
@@ -28,7 +30,7 @@ function initSongChart(spotifyId) {
                     },
                     maintainAspectRatio: false,
                     responsive: true,
-                }
+                },
             };
             const myChart = new Chart(
                 document.getElementById('song-chart'),
@@ -36,6 +38,18 @@ function initSongChart(spotifyId) {
             );
         });
     });
+}
+
+
+function getXAxisLabel(value, index, ticks) {
+    if (index == 0) {
+        let endsWithYear = value.split(' ').at(-1).match(/^[0-9]{4}$/);
+        if (!endsWithYear) {
+            let year = new Date(ticks[index].value).getFullYear();
+            return value + ' ' + year;
+        }
+    }
+    return value;
 }
 
 
