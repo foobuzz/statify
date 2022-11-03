@@ -221,7 +221,7 @@ class StatifyDatabase:
                 q,
                 # just move along, nothing to see here
                 tuple([
-                    f"%{' ' if i%2 == 0 else ''}{w}%"
+                    f"{'% ' if i%2 == 0 else ''}{w}%"
                     for zipped in zip(*([words]*4))
                     for i, w in enumerate(zipped)
                 ])
