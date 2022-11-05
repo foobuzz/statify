@@ -15,23 +15,23 @@ def test_pull_listenings_no_previous_fetch(
     2 listenings, no previous listening in database.
     """
     utils.add_current_user_recently_played_response([
-        utils.listening_factory(
+        utils.spotify_listening_factory(
             played_at="2020-07-07T16:53:23",
-            track=utils.track_factory(
+            track=utils.spotify_track_factory(
                 id='t2',
                 name="California Dreamin'",
                 artists=[
-                    utils.artist_factory(name="Bobby Womack"),
+                    utils.spotify_artist_factory(name="Bobby Womack"),
                 ],
             ),
         ),
-        utils.listening_factory(
+        utils.spotify_listening_factory(
             played_at="2020-07-07T16:48:45",
-            track=utils.track_factory(
+            track=utils.spotify_track_factory(
                 id="t1",
                 name="S.O.B.",
                 artists=[
-                    utils.artist_factory(name="Nathaniel Rateliff"),
+                    utils.spotify_artist_factory(name="Nathaniel Rateliff"),
                 ],
             ),
         ),
@@ -121,33 +121,33 @@ def test_pull_listenings_match_previous_fetch(
     3 remote listenings, number 2 matches the previous one in the database.
     """
     utils.add_current_user_recently_played_response([
-        utils.listening_factory(
+        utils.spotify_listening_factory(
             played_at="2020-07-07T16:53:23",
-            track=utils.track_factory(
+            track=utils.spotify_track_factory(
                 id='t2',
                 name="California Dreamin'",
                 artists=[
-                    utils.artist_factory(name="Bobby Womack"),
+                    utils.spotify_artist_factory(name="Bobby Womack"),
                 ],
             ),
         ),
-        utils.listening_factory(
+        utils.spotify_listening_factory(
             played_at="2020-07-07T16:48:45",
-            track=utils.track_factory(
+            track=utils.spotify_track_factory(
                 id="t1",
                 name="S.O.B.",
                 artists=[
-                    utils.artist_factory(name="Nathaniel Rateliff"),
+                    utils.spotify_artist_factory(name="Nathaniel Rateliff"),
                 ],
             ),
         ),
-        utils.listening_factory(
+        utils.spotify_listening_factory(
             played_at="2020-07-07T16:45:57",
-            track=utils.track_factory(
+            track=utils.spotify_track_factory(
                 id="t0",
                 name="Wrench and Numbers",
                 artists=[
-                    utils.artist_factory(name="Jeff Russo"),
+                    utils.spotify_artist_factory(name="Jeff Russo"),
                 ],
             ),
         ),
@@ -197,13 +197,13 @@ def test_pull_listenings_no_new_listening(
     1 remote listenings, matches the previous one in the database.
     """
     utils.add_current_user_recently_played_response([
-        utils.listening_factory(
+        utils.spotify_listening_factory(
             played_at="2020-07-07T16:53:23",
-            track=utils.track_factory(
+            track=utils.spotify_track_factory(
                 id='t2',
                 name="California Dreamin'",
                 artists=[
-                    utils.artist_factory(name="Bobby Womack"),
+                    utils.spotify_artist_factory(name="Bobby Womack"),
                 ],
             ),
         ),

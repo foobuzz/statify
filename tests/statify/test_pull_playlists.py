@@ -15,7 +15,7 @@ def test_pull_playlist_add_playlist(
     """
 
     utils.add_current_user_playlists_response([
-        utils.playlist_factory(
+        utils.spotify_playlist_factory(
             name="Tarantino",
             owner={
                 'display_name': "Valentin",
@@ -25,27 +25,27 @@ def test_pull_playlist_add_playlist(
 
     utils.add_playlist_tracks_response(
         [
-            utils.playlist_track_factory(
+            utils.spotify_playlist_track_factory(
                 added_at='2020-01-16T08:00:00Z',
-                track=utils.track_factory(
+                track=utils.spotify_track_factory(
                     id='t1',
                     name='Son of a Preacher Man',
                     artists=[
-                        utils.artist_factory(name='Dusty Springfield'),
+                        utils.spotify_artist_factory(name='Dusty Springfield'),
                     ],
-                    album=utils.album_factory(name='Dusty in Memphis'),
+                    album=utils.spotify_album_factory(name='Dusty in Memphis'),
                 ),
             ),
-            utils.playlist_track_factory(
+            utils.spotify_playlist_track_factory(
                 added_at='2020-01-16T08:05:00Z',
-                track=utils.track_factory(
+                track=utils.spotify_track_factory(
                     id=None,
                     is_local=True,
                     name='Jungle Boogie',
                     artists=[
-                        utils.artist_factory(name='Kool & The Gang'),
+                        utils.spotify_artist_factory(name='Kool & The Gang'),
                     ],
-                    album=utils.album_factory(name='Wild And Peaceful'),
+                    album=utils.spotify_album_factory(name='Wild And Peaceful'),
                 ),
             ),
         ]
@@ -156,7 +156,7 @@ def test_pull_playlist_update_playlist(
     in_memory_database.commit()
 
     utils.add_current_user_playlists_response([
-        utils.playlist_factory(
+        utils.spotify_playlist_factory(
             name="Tarantino Tunes",
             owner={
                 'display_name': "Valentin",
@@ -221,7 +221,7 @@ def test_pull_playlist_add_track(
     )
 
     utils.add_current_user_playlists_response([
-        utils.playlist_factory(
+        utils.spotify_playlist_factory(
             name="Tarantino",
             owner={
                 'display_name': "Valentin",
@@ -230,26 +230,26 @@ def test_pull_playlist_add_track(
     ])
 
     utils.add_playlist_tracks_response([
-        utils.playlist_track_factory(
+        utils.spotify_playlist_track_factory(
             added_at='2020-01-16T08:00:00Z',
-            track=utils.track_factory(
+            track=utils.spotify_track_factory(
                 id='t1',
                 name='Son of a Preacher Man',
                 artists=[
-                    utils.artist_factory(name='Dusty Springfield'),
+                    utils.spotify_artist_factory(name='Dusty Springfield'),
                 ],
-                album=utils.album_factory(name='Dusty in Memphis'),
+                album=utils.spotify_album_factory(name='Dusty in Memphis'),
             ),
         ),
-        utils.playlist_track_factory(
+        utils.spotify_playlist_track_factory(
             added_at='2020-01-16T08:05:00Z',
-            track=utils.track_factory(
+            track=utils.spotify_track_factory(
                 id='t2',
                 name='Jungle Boogie',
                 artists=[
-                    utils.artist_factory(name='Kool & The Gang'),
+                    utils.spotify_artist_factory(name='Kool & The Gang'),
                 ],
-                album=utils.album_factory(name='Wild And Peaceful'),
+                album=utils.spotify_album_factory(name='Wild And Peaceful'),
             ),
         ),
     ])
@@ -339,7 +339,7 @@ def test_pull_playlist_delete_track(
     )
 
     utils.add_current_user_playlists_response([
-        utils.playlist_factory(
+        utils.spotify_playlist_factory(
             name="Tarantino",
             owner={
                 'display_name': "Valentin",
@@ -348,15 +348,15 @@ def test_pull_playlist_delete_track(
     ])
 
     utils.add_playlist_tracks_response([
-        utils.playlist_track_factory(
+        utils.spotify_playlist_track_factory(
             added_at='2020-01-16T08:00:00Z',
-            track=utils.track_factory(
+            track=utils.spotify_track_factory(
                 id='t1',
                 name='Son of a Preacher Man',
                 artists=[
-                    utils.artist_factory(name='Dusty Springfield'),
+                    utils.spotify_artist_factory(name='Dusty Springfield'),
                 ],
-                album=utils.album_factory(name='Dusty in Memphis'),
+                album=utils.spotify_album_factory(name='Dusty in Memphis'),
             ),
         ),
     ])

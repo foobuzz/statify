@@ -58,7 +58,7 @@ def add_current_user_recently_played_response(listenings):
     )
 
 
-def playlist_factory(**data):
+def spotify_playlist_factory(**data):
     playlist = {
         "tracks": {
             "href": ("https://api.spotify.com/v1/playlists/test_playlist_id"
@@ -110,13 +110,13 @@ def playlist_factory(**data):
     return playlist
 
 
-def playlist_track_factory(**data):
+def spotify_playlist_track_factory(**data):
     playlist_track = {
         "is_local": False,
         "video_thumbnail": {
             "url": None
         },
-        "track": track_factory(),
+        "track": spotify_track_factory(),
         "primary_color": None,
         "added_by": {
             "href": "https://api.spotify.com/v1/users/test_user_id",
@@ -133,9 +133,9 @@ def playlist_track_factory(**data):
     return playlist_track
 
 
-def track_factory(**data):
+def spotify_track_factory(**data):
     track = {
-        "album": album_factory(),
+        "album": spotify_album_factory(),
         "is_local": False,
         "track_number": 15,
         "disc_number": 1,
@@ -151,7 +151,7 @@ def track_factory(**data):
         "id": "test_track_id",
         "preview_url": "https://p.scdn.co/mp3-preview/test_url_token1",
         "episode": False,
-        "artists": [artist_factory()],
+        "artists": [spotify_artist_factory()],
         "name": "Test Track Name",
         "duration_ms": 314159,
         "external_urls": {
@@ -163,7 +163,7 @@ def track_factory(**data):
     return track
 
 
-def artist_factory(**data):
+def spotify_artist_factory(**data):
     artist = {
         "id": "test_artist_id",
         "href": "https://api.spotify.com/v1/artists/test_artist_id",
@@ -178,7 +178,7 @@ def artist_factory(**data):
     return artist
 
 
-def album_factory(**data):
+def spotify_album_factory(**data):
     album = {
         "href": "https://api.spotify.com/v1/albums/test_album_id",
         "images": [
@@ -201,7 +201,7 @@ def album_factory(**data):
         "release_date_precision": "day",
         "id": "test_album_id",
         "album_type": "album",
-        "artists": [artist_factory()],
+        "artists": [spotify_artist_factory()],
         "uri": "spotify:album:test_album_id",
         "release_date": "1999-03-10",
         "total_tracks": 12,
@@ -216,17 +216,17 @@ def album_factory(**data):
     return album
 
 
-def listening_factory(**data):
+def spotify_listening_factory(**data):
     listening = {
-        'track': track_factory(),
+        'track': spotify_track_factory(),
         'played_at': '2020-05-23T11:46:13.123Z',
-        'context': listening_context_factory(),
+        'context': spotify_listening_context_factory(),
     }
     listening.update(data)
     return listening
 
 
-def listening_context_factory(**data):
+def spotify_listening_context_factory(**data):
     listening_context = {
         'external_urls': {
             'spotify': 'https://open.spotify.com/playlist/test_playlist_id',
