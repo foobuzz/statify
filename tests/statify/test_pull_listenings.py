@@ -52,7 +52,9 @@ def test_pull_listenings_no_previous_fetch(
         ),
     ]
 
-    assert set(in_memory_database.select_from('Song', ['*'])) == {
+    assert set(
+        tuple(r) for r in in_memory_database.select_from('Song', ['*'])
+    ) == {
         (
             't1',
             'https://api.spotify.com/v1/tracks/test_track_id',
@@ -89,7 +91,9 @@ def test_pull_listenings_no_previous_fetch(
         ),
     }
 
-    assert set(in_memory_database.select_from('Listening', ['*'])) == {
+    assert set(
+        tuple(r) for r in in_memory_database.select_from('Listening', ['*'])
+    ) == {
         (
             1,
             't2',
@@ -180,7 +184,7 @@ def test_pull_listenings_match_previous_fetch(
         .limit(1)
     ).fetchone()
 
-    assert latest == (
+    assert tuple(latest) == (
         2, 't2', '2020-07-07T16:53:23', 'playlist', None, 'test_playlist_id'
     )
 
@@ -236,6 +240,6 @@ def test_pull_listenings_no_new_listening(
         .limit(1)
     ).fetchone()
 
-    assert latest == (
+    assert tuple(latest) == (
         1, 't2', '2020-07-07T16:53:23', 'playlist', None, 'test_playlist_id'
     )

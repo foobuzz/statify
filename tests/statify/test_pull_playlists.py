@@ -78,7 +78,9 @@ def test_pull_playlist_add_playlist(
         )
     ]
 
-    assert in_memory_database.select_from('Playlist', ['*']) == [(
+    assert [
+        tuple(r) for r in in_memory_database.select_from('Playlist', ['*'])
+    ] == [(
         'test_playlist_id',
         'https://api.spotify.com/v1/playlists/test_playlist_id',
         'https://open.spotify.com/playlist/test_playlist_id',
@@ -88,7 +90,9 @@ def test_pull_playlist_add_playlist(
         'Valentin'
     )]
 
-    assert set(in_memory_database.select_from('Song', ['*'])) == {
+    assert set(
+        tuple(r) for r in in_memory_database.select_from('Song', ['*'])
+    ) == {
         (
             't1',
             'https://api.spotify.com/v1/tracks/test_track_id',
@@ -125,7 +129,9 @@ def test_pull_playlist_add_playlist(
         ),
     }
 
-    assert set(in_memory_database.select_from('SongInPlaylist', ['*'])) == {
+    assert set(
+        tuple(r) for r in in_memory_database.select_from('SongInPlaylist', ['*'])
+    ) == {
         ('t1', 'test_playlist_id', '2020-01-16T08:00:00Z'),
         (local_song_id, 'test_playlist_id', '2020-01-16T08:05:00Z')
     }
@@ -166,7 +172,9 @@ def test_pull_playlist_update_playlist(
 
     assert logging_mock.info.call_args_list == []
 
-    assert in_memory_database.select_from('Playlist', ['name']) == [
+    assert [
+        tuple(r) for r in in_memory_database.select_from('Playlist', ['name'])
+    ] == [
         ('Tarantino Tunes',),
     ]
 
@@ -258,7 +266,9 @@ def test_pull_playlist_add_track(
         )
     ]
 
-    assert set(in_memory_database.select_from('SongInPlaylist', ['*'])) == {
+    assert set(
+        tuple(r) for r in in_memory_database.select_from('SongInPlaylist', ['*'])
+    ) == {
         ('t1', 'test_playlist_id', '2020-01-16T08:00:00Z'),
         ('t2', 'test_playlist_id', '2020-01-16T08:05:00Z'),
     }
@@ -363,7 +373,9 @@ def test_pull_playlist_delete_track(
         ),
     ]
 
-    assert set(in_memory_database.select_from('SongInPlaylist', ['*'])) == {
+    assert set(
+        tuple(r) for r in in_memory_database.select_from('SongInPlaylist', ['*'])
+    ) == {
         ('t1', 'test_playlist_id', '2020-01-16T08:00:00Z'),
     }
 

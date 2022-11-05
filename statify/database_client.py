@@ -101,7 +101,6 @@ class StatifyDatabase:
             )
 
     def _execute(self, query, params=None):
-        print(">>>>>>", str(query), params)
         return self._sql(str(query), params)
 
     def _sql(self, query, params=None):
