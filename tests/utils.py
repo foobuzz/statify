@@ -1,3 +1,5 @@
+from statify.database_client import Song
+
 import responses
 
 
@@ -237,3 +239,25 @@ def spotify_listening_context_factory(**data):
     }
     listening_context.update(data)
     return listening_context
+
+
+def song_factory(**data):
+    song_data = {
+        'spotify_id': '1OppEieGNdItZbE14gLBEv',
+        'web_url': 'https://open.spotify.com/track/1OppEieGNdItZbE14gLBEv',
+        'api_url': 'https://api.spotify.com/v1/tracks/1OppEieGNdItZbE14gLBEv',
+        'duration': 167933,
+        'explicit': 0,
+        'isrc': 'USMO16600346',
+        'is_local': 0,
+        'name': "You Can't Hurry Love",
+        'popularity': 74,
+        'preview_url': 'https://p.scdn.co/mp3-preview/toto',
+        'track_number': 15,
+        'album_id': '5fpOmAuZaVyEXPlQ4oOqJ6',
+        'cover_url': 'https://i.scdn.co/image/tada',
+        'album_name': "The Supremes A' Go-Go (Expanded Edition)",
+        'artists_names': 'The Supremes'
+    }
+    song_data.update(data)
+    return Song(**song_data)

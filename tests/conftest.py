@@ -1,7 +1,9 @@
 import json
 import os
 from datetime import datetime, timedelta
+from pathlib import Path
 
+import jinja2
 import pytest
 import yaml
 
@@ -10,6 +12,35 @@ from statify import (
     database_client,
     spotify_client
 )
+from statify import webserver
+from statify.webserver import webserver as statify_webserver
+
+
+TEMPLATES = {}
+
+
+def load_templates():
+    """
+    Templates need to be pre-loaded, since pyfakefs breaks dynamic loading
+    (templates don't exist in the fake filesystem). There surely is a better way
+    to handle this.
+    """
+    app = statify_webserver.app
+    for template in (Path(webserver.__file__).parent / 'templates').iterdir():
+        TEMPLATES[template.name] = app.jinja_loader.get_source(
+            app.jinja_env,
+            template.name,
+        )
+
+
+load_templates()
+
+
+@pytest.fixture
+def app():
+    app = statify_webserver.app
+    app.jinja_loader = jinja2.FunctionLoader(lambda name: TEMPLATES[name])
+    return app
 
 
 @pytest.fixture

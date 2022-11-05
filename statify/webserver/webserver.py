@@ -44,8 +44,6 @@ def autocomplete_endpoint():
         reverse=True,
     )
 
-    print(">", [r['name'] for r in results])
-
     return flask.jsonify(results)
 
 
