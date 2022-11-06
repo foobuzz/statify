@@ -1,4 +1,4 @@
-from statify.database_client import Song
+from statify.database_client import Song, Listening
 
 import responses
 
@@ -241,7 +241,7 @@ def spotify_listening_context_factory(**data):
     return listening_context
 
 
-def song_factory(**data):
+def song_factory(database, **data):
     song_data = {
         'spotify_id': '1OppEieGNdItZbE14gLBEv',
         'web_url': 'https://open.spotify.com/track/1OppEieGNdItZbE14gLBEv',
@@ -260,4 +260,23 @@ def song_factory(**data):
         'artists_names': 'The Supremes'
     }
     song_data.update(data)
-    return Song(**song_data)
+    song =  Song(**song_data)
+    database.insert(song)
+    return song
+
+
+def listening_factory(database, **data):
+    song = data.pop('song', None)
+    if song is None:
+        song = song_factory(database, **data.pop('song_data', {}))
+    listening_data = {
+        'song_id': song.spotify_id,
+        'played_at': '2020-07-08T20:30:31.881Z',
+        'context': None,
+        'album_id': None,
+        'playlist_id': None,
+    }
+    listening_data.update(data)
+    listening = Listening(**listening_data)
+    database.insert(listening)
+    return listening

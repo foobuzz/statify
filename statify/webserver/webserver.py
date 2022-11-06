@@ -8,7 +8,11 @@ from statify.webserver import search
 
 
 app = flask.Flask(__name__)
-db_client = database_client.StatifyDatabase()
+
+
+@app.before_request
+def ensure_db_client():
+    flask.g.db_client = database_client.StatifyDatabase()
 
 
 # Front
@@ -20,15 +24,15 @@ def front_page():
 
 @app.route('/song/<spotify_id>')
 def song_page(spotify_id):
-    song_data = db_client.select_song_by_spotify_id(spotify_id)
+    song_data = flask.g.db_client.select_song_by_spotify_id(spotify_id)
     return flask.render_template('song.html', song=song_data)
 
 
 # API
 
 @app.route('/api/listenings/<spotify_id>')
-def song_endpoint(spotify_id):
-    listenings = db_client.select_listenings_by_spotify_id(spotify_id)
+def listenings_endpoint(spotify_id):
+    listenings = flask.g.db_client.select_listenings_by_spotify_id(spotify_id)
     return flask.jsonify([listening_resource(l) for l in listenings])
 
 
@@ -37,7 +41,7 @@ def autocomplete_endpoint():
     query = flask.request.args['query']
     words = [w.lower() for w in query.split()]
     
-    results = db_client.search_songs(words)
+    results = flask.g.db_client.search_songs(words)
 
     results.sort(
         key=lambda s: search.match_song_to_query(words=words, song=s),
@@ -50,10 +54,10 @@ def autocomplete_endpoint():
 def listening_resource(listening):
     return {
         **listening,
-        'played_at': datetime.strptime(
+        'played_at': int(datetime.strptime(
             listening['played_at'][:19],
             '%Y-%m-%dT%H:%M:%S',
-        ).timestamp()
+        ).timestamp())
     }
 
 

@@ -13,8 +13,7 @@ def test_front_page(client, in_memory_database):
 
 
 def test_song_page(client, in_memory_database):
-    song = utils.song_factory()
-    in_memory_database.insert(song)
+    song = utils.song_factory(in_memory_database)
 
     response = client.get(
         flask.url_for(
