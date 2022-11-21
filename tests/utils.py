@@ -1,3 +1,6 @@
+import random
+import string
+
 from statify.database_client import Song, Listening
 
 import responses
@@ -242,10 +245,12 @@ def spotify_listening_context_factory(**data):
 
 
 def song_factory(database, **data):
+    spotify_id = spotify_id_factory()
+
     song_data = {
-        'spotify_id': '1OppEieGNdItZbE14gLBEv',
-        'web_url': 'https://open.spotify.com/track/1OppEieGNdItZbE14gLBEv',
-        'api_url': 'https://api.spotify.com/v1/tracks/1OppEieGNdItZbE14gLBEv',
+        'spotify_id': spotify_id,
+        'web_url': f'https://open.spotify.com/track/{spotify_id}',
+        'api_url': f'https://api.spotify.com/v1/tracks/{spotify_id}',
         'duration': 167933,
         'explicit': 0,
         'isrc': 'USMO16600346',
@@ -263,6 +268,13 @@ def song_factory(database, **data):
     song =  Song(**song_data)
     database.insert(song)
     return song
+
+
+def spotify_id_factory():
+    return ''.join([
+        random.choice(string.ascii_letters + string.digits)
+        for _ in range(22)
+    ])
 
 
 def listening_factory(database, **data):
