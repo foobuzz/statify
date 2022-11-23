@@ -19,5 +19,4 @@ def match_song_to_query(words: List[str], song: dict):
             if w == value:
                 score += 1
 
-    print(song['name'], song['artists_names'], score)
     return score
