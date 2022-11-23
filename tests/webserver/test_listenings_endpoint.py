@@ -29,5 +29,5 @@ def test_listenings_endpoint(client, in_memory_database):
         'listening_id': 1,
         'played_at': 1594233031,
         'playlist_id': None,
-        'song_id': '1OppEieGNdItZbE14gLBEv',
+        'song_id': song.spotify_id,
     }
