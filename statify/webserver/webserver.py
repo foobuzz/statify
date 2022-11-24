@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 import flask
 
@@ -56,7 +56,7 @@ def listening_resource(listening):
         'played_at': int(datetime.strptime(
             listening['played_at'][:19],
             '%Y-%m-%dT%H:%M:%S',
-        ).timestamp())
+        ).replace(tzinfo=timezone.utc).timestamp())
     }
 
 
