@@ -1,3 +1,7 @@
+## 1.3.0
+
+- Add webserver with songs graph.
+
 ## 1.2.0
 
 - Allow passing underlying client options in config
