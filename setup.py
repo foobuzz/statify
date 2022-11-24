@@ -32,6 +32,7 @@ setup(
         'tests': {
             'flake8==3.8.4',
             'pytest==5.4.3',
+            'pytest-flask==1.2.0',
             'pytest-mock==3.1.1',
             'pyfakefs==4.0.2',
             'responses==0.10.15',

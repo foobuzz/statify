@@ -1,4 +1,3 @@
-import functools
 from datetime import datetime
 
 import flask
@@ -33,14 +32,14 @@ def song_page(spotify_id):
 @app.route('/api/listenings/<spotify_id>')
 def listenings_endpoint(spotify_id):
     listenings = flask.g.db_client.select_listenings_by_spotify_id(spotify_id)
-    return flask.jsonify([listening_resource(l) for l in listenings])
+    return flask.jsonify([listening_resource(lisng) for lisng in listenings])
 
 
 @app.route('/api/autocomplete')
 def autocomplete_endpoint():
     query = flask.request.args['query']
     words = [w.lower() for w in query.split()]
-    
+
     results = flask.g.db_client.search_songs(words)
 
     results.sort(

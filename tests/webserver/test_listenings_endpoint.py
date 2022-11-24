@@ -5,7 +5,7 @@ from .. import utils
 
 def test_listenings_endpoint(client, in_memory_database):
     song = utils.song_factory(in_memory_database)
-    listenings = [
+    [
         utils.listening_factory(
             in_memory_database, song=song, played_at=played_at
         )

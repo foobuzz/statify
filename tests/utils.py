@@ -265,7 +265,7 @@ def song_factory(database, **data):
         'artists_names': 'The Supremes'
     }
     song_data.update(data)
-    song =  Song(**song_data)
+    song = Song(**song_data)
     database.insert(song)
     return song
 
