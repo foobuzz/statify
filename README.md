@@ -58,6 +58,13 @@ You can also update everything (playlists and listenings):
 The database is located at `~/.data/statify/statify.sqlite`. See [examples of queries](https://github.com/foobuzz/statify/blob/master/queries.sql) you can then run on this database.
 
 
+### Webserver
+
+Statify also comes with the command `statify_webserver` to run a webserver on localhost:5000, which features a web interface to search for songs and look at the listenings for this song.
+
+![Statify web interface](docs/statify_webserver.png)
+
+
 ## FAQ
 
 **Why do I need to create an App on Spotify and authorize myself on it?**
